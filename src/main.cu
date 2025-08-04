@@ -22,6 +22,15 @@ int main() {
     }
   }
 
+  Lehmann::BankState* d_banks_curr;
+  Lehmann::BankState* d_banks_next;
+
+  cudaMalloc(&d_banks_curr, Lehmann::NUM_BANKS * sizeof(Lehmann::BankState));
+  cudaMalloc(&d_banks_next, Lehmann::NUM_BANKS * sizeof(Lehmann::BankState));
+
+  cudaMemcpy(d_banks_curr, h_banks, Lehmann::NUM_BANKS * sizeof(Lehmann::BankState), cudaMemcpyHostToDevice);
+
+
   int* d_exposure_targets;
   float* d_exposure_weights;
 
