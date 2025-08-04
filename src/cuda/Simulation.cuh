@@ -7,10 +7,11 @@
 #include "cuda/Bank.cuh"
 
 namespace Lehmann {
-__global__ void simulate_step(
-    BankState* banks,
-    int* exposure_targets,
-    double* exposure_weights,
+__global__ void SimulateStep(
+    const BankState* current,
+    BankState* next,
+    const int* exposure_targets,
+    const float* exposure_weights,
     int K,
     int n);
 }

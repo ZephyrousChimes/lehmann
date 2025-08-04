@@ -2,18 +2,19 @@
 
 namespace Lehmann {
   __global__ void SimulateStep(
-    BankState *banks,
-    const int *exposure_targets,
-    const double *exposure_weights,
-    const int K,
-    const int n
-  ) {
+  const BankState* current,
+  BankState* next,
+  const int* exposure_targets,
+  const float* exposure_weights,
+  int K,
+  int n)
+  {
     size_t idx = blockIdx.x * blockDim.x + threadIdx.x;
     if (idx >= n) return;
 
-    BankState& me = banks[idx];
+    BankState& me = next[idx];
 
-    if (me.failed) return; // already failed, skip
+    if (me.failed) return;
 
     float loss = 0.0f;
 
@@ -22,8 +23,8 @@ namespace Lehmann {
       int target_bank_id = exposure_targets[idx * K + j];
       double weight = exposure_weights[idx * K + j];
 
-      if (banks[target_bank_id].failed) {
-        loss += me.assets * weight;  // lose proportional value
+      if (current[target_bank_id].failed) {
+        loss += me.assets * weight;
       }
     }
 
