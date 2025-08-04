@@ -1,0 +1,53 @@
+# Build artifacts
+/build/
+/out/
+/bin/
+/lib/
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# CUDA
+*.cu.d
+*.ptx
+*.cubin
+*.linkinfo
+
+# Compiled object files
+*.o
+*.obj
+*.so
+*.dll
+*.dylib
+*.exe
+*.out
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs and dumps
+*.log
+*.csv
+*.json
+*.dat
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Results
+/data/logs/
+/data/plots/
+
+# OS
+.DS_Store
+Thumbs.db
+
